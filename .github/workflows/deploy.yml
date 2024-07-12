@@ -1,0 +1,18 @@
+name: Deploy to Seed
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy to Seed
+        run: npx seed run deploy --stage pr-${{ github.event.number }}
+        env:
+          SEED_APP: your-seed-app-name
+          SEED_API_KEY: ${{ secrets.SEED_API_KEY }}
