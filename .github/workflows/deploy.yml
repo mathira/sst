@@ -14,5 +14,5 @@ jobs:
       - name: Deploy to Seed
         run: npx seed run deploy --stage pr-${{ github.event.number }}
         env:
-          SEED_APP: your-seed-app-name
+          SEED_APP: seedsecret
           SEED_API_KEY: ${{ secrets.SEED_API_KEY }}
